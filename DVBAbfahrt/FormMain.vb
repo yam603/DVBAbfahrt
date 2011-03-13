@@ -13,7 +13,7 @@ Imports StedySoft.SenseSDK.Localization
 
 Public Class FormMain
 
-    Private Sub ZeigeDebugInfo(ByVal Beschreibung As String, ByVal Wert As String)
+    Public Sub ZeigeDebugInfo(ByVal Beschreibung As String, ByVal Wert As String)
         TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & Beschreibung & ": " & Wert & vbNewLine & vbNewLine
     End Sub
     Private Sub ZeitAnzeigen()
@@ -32,8 +32,11 @@ Public Class FormMain
 
         AktuelleHaltestelle = FormEinstellungen.GetHaltestelle.Index
         'Debug
-        If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Aktulle Haltestelle", CStr(AktuelleHaltestelle))
-        If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Anzahl Haltestellen - 1", CStr(Fahrplan.GetAnzahlLinien(AktuelleHaltestelle)))
+        If FormEinstellungen.GetDebug Then
+            ZeigeDebugInfo("Feiertag", CStr(FormEinstellungen.GetFeiertag))
+            ZeigeDebugInfo("Aktulle Haltestelle", CStr(AktuelleHaltestelle))
+            ZeigeDebugInfo("Anzahl Haltestellen - 1", CStr(Fahrplan.GetAnzahlLinien(AktuelleHaltestelle)))
+        End If
 
         For i = 0 To Fahrplan.GetAnzahlLinien(AktuelleHaltestelle)
             AktulleLinie = Fahrplan.GetLinie(AktuelleHaltestelle, i)
@@ -81,5 +84,9 @@ Public Class FormMain
 
     Private Sub FormMain_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
+    End Sub
+
+    Public Sub AusgabeLeeren()
+        TextBoxAbfahrt.Text = ""
     End Sub
 End Class

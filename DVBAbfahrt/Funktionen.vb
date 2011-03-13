@@ -85,10 +85,14 @@
         Dim UeberlaufZeit, UeberlaufAnzahl As Integer
 
         'Initialsierung
-        TagAbfahrtWunsch = TagCodierungTag(Date.Now.DayOfWeek)
+        If FormEinstellungen.GetFeiertag = True Then
+            TagAbfahrtWunsch = 6
+        Else : TagAbfahrtWunsch = TagCodierungTag(Date.Now.DayOfWeek)
+        End If
+
         StundeAbfahrtWunsch = Date.Now.Hour
         MinuteAbfahrtWunsch = Date.Now.Minute + ZeitZurHaltestelle
-        TagAbfahrtIndex = TagCodierungIndex(TagCodierungTag(Date.Now.DayOfWeek))
+        TagAbfahrtIndex = TagCodierungIndex(TagAbfahrtWunsch)
         StundeAbfahrtIndex = 0
         MinuteAbfahrtIndex = 1
         TagAbfahrt = TagAbfahrtWunsch
