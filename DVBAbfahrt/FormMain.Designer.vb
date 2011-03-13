@@ -94,7 +94,7 @@ Partial Public Class FormMain
         Me.Haltestelle.Location = New System.Drawing.Point(20, 82)
         Me.Haltestelle.Name = "Haltestelle"
         Me.Haltestelle.Size = New System.Drawing.Size(199, 20)
-        Me.Haltestelle.Text = "Haltestelle Bergmanstraße"
+        Me.Haltestelle.Text = "Haltestelle Bergmannstraße"
         '
         'Label1
         '
