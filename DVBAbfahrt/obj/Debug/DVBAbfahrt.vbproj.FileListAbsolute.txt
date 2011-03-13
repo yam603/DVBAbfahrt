@@ -1,0 +1,13 @@
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Debug\DVBAbfahrt.exe
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Debug\DVBAbfahrt.pdb
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Debug\DVBAbfahrt.xml
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Debug\SenseSDK.Resources.QVGA.dll
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Debug\SenseSDK.Resources.VGA.dll
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Debug\StedySoft.SenseSDK.dll
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\ResolveAssemblyReference.cache
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\DVBAbfahrt.FormMain.resources
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\DVBAbfahrt.Resources.resources
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\DVBAbfahrt.vbproj.GenerateResource.Cache
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\DVBAbfahrt.exe
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\DVBAbfahrt.xml
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Debug\DVBAbfahrt.pdb
