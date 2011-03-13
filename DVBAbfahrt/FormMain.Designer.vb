@@ -22,14 +22,16 @@ Partial Public Class FormMain
         Me.ButtonAbfahrt = New StedySoft.SenseSDK.SenseButtonControl
         Me.ComboWarteZeit = New StedySoft.SenseSDK.SenseComboControl
         Me.LabelUhrzeit = New System.Windows.Forms.Label
-        Me.HeaderMain = New StedySoft.SenseSDK.SenseHeaderControl
         Me.TextBoxAbfahrt = New StedySoft.SenseSDK.SenseTextboxControl
         Me.MainMenu1 = New System.Windows.Forms.MainMenu
+        Me.Einstellungen = New System.Windows.Forms.MenuItem
         Me.Timer1 = New System.Windows.Forms.Timer
-        Me.Haltestelle = New System.Windows.Forms.Label
+        Me.LabelHaltestelle = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New StedySoft.SenseSDK.SenseHeaderControl
+        Me.HeaderMain = New StedySoft.SenseSDK.SenseHeaderControl
         Me.LabelVersion = New System.Windows.Forms.Label
+        Me.MainMenu2 = New System.Windows.Forms.MainMenu
+        Me.MenuItemEinstellungen = New System.Windows.Forms.MenuItem
         Me.SuspendLayout()
         '
         'ButtonAbfahrt
@@ -57,15 +59,6 @@ Partial Public Class FormMain
         Me.LabelUhrzeit.Text = "Label1"
         Me.LabelUhrzeit.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'HeaderMain
-        '
-        Me.HeaderMain.Dock = System.Windows.Forms.DockStyle.Top
-        Me.HeaderMain.Location = New System.Drawing.Point(0, 0)
-        Me.HeaderMain.Name = "HeaderMain"
-        Me.HeaderMain.Size = New System.Drawing.Size(30, 25)
-        Me.HeaderMain.TabIndex = 2
-        Me.HeaderMain.Text = "Local Time & Date"
-        '
         'TextBoxAbfahrt
         '
         Me.TextBoxAbfahrt.AcceptsReturn = True
@@ -83,18 +76,26 @@ Partial Public Class FormMain
         Me.TextBoxAbfahrt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.TextBoxAbfahrt.WordWrap = False
         '
+        'MainMenu1
+        '
+        Me.MainMenu1.MenuItems.Add(Me.Einstellungen)
+        '
+        'Einstellungen
+        '
+        Me.Einstellungen.Text = "Einstellungen"
+        '
         'Timer1
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'Haltestelle
+        'LabelHaltestelle
         '
-        Me.Haltestelle.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Haltestelle.Location = New System.Drawing.Point(20, 82)
-        Me.Haltestelle.Name = "Haltestelle"
-        Me.Haltestelle.Size = New System.Drawing.Size(199, 20)
-        Me.Haltestelle.Text = "Haltestelle Bergmannstraße"
+        Me.LabelHaltestelle.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.LabelHaltestelle.Location = New System.Drawing.Point(20, 82)
+        Me.LabelHaltestelle.Name = "LabelHaltestelle"
+        Me.LabelHaltestelle.Size = New System.Drawing.Size(199, 20)
+        Me.LabelHaltestelle.Text = "Haltestelle"
         '
         'Label1
         '
@@ -103,14 +104,14 @@ Partial Public Class FormMain
         Me.Label1.Size = New System.Drawing.Size(77, 20)
         Me.Label1.Text = "Abfahrt in:"
         '
-        'Label2
+        'HeaderMain
         '
-        Me.Label2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Label2.Location = New System.Drawing.Point(0, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(240, 25)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "DVBAbfahrt"
+        Me.HeaderMain.Dock = System.Windows.Forms.DockStyle.Top
+        Me.HeaderMain.Location = New System.Drawing.Point(0, 0)
+        Me.HeaderMain.Name = "HeaderMain"
+        Me.HeaderMain.Size = New System.Drawing.Size(240, 25)
+        Me.HeaderMain.TabIndex = 0
+        Me.HeaderMain.Text = "DVBAbfahrt"
         '
         'LabelVersion
         '
@@ -121,17 +122,25 @@ Partial Public Class FormMain
         Me.LabelVersion.Text = "Version"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
+        'MainMenu2
+        '
+        Me.MainMenu2.MenuItems.Add(Me.MenuItemEinstellungen)
+        '
+        'MenuItemEinstellungen
+        '
+        Me.MenuItemEinstellungen.Text = "Einstellungen"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.ClientSize = New System.Drawing.Size(240, 355)
+        Me.ClientSize = New System.Drawing.Size(240, 268)
         Me.Controls.Add(Me.LabelVersion)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.HeaderMain)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Haltestelle)
+        Me.Controls.Add(Me.LabelHaltestelle)
         Me.Controls.Add(Me.TextBoxAbfahrt)
         Me.Controls.Add(Me.LabelUhrzeit)
         Me.Controls.Add(Me.ComboWarteZeit)
@@ -145,13 +154,15 @@ Partial Public Class FormMain
     Friend WithEvents ButtonAbfahrt As StedySoft.SenseSDK.SenseButtonControl
     Friend WithEvents ComboWarteZeit As StedySoft.SenseSDK.SenseComboControl
     Friend WithEvents LabelUhrzeit As System.Windows.Forms.Label
-    Friend WithEvents HeaderMain As StedySoft.SenseSDK.SenseHeaderControl
     Friend WithEvents TextBoxAbfahrt As StedySoft.SenseSDK.SenseTextboxControl
     Friend WithEvents MainMenu1 As System.Windows.Forms.MainMenu
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
-    Friend WithEvents Haltestelle As System.Windows.Forms.Label
+    Friend WithEvents LabelHaltestelle As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As StedySoft.SenseSDK.SenseHeaderControl
+    Friend WithEvents HeaderMain As StedySoft.SenseSDK.SenseHeaderControl
     Friend WithEvents LabelVersion As System.Windows.Forms.Label
+    Friend WithEvents MainMenu2 As System.Windows.Forms.MainMenu
+    Friend WithEvents MenuItemEinstellungen As System.Windows.Forms.MenuItem
+    Friend WithEvents Einstellungen As System.Windows.Forms.MenuItem
 
 End Class

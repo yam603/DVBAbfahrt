@@ -39,6 +39,8 @@ Public Class FormMain
 
     Private Sub FormMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ZeitAnzeigen()
+        FormEinstellungen.SetHaltestelle(0, "Bergmannstraße")
+        LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
         LabelVersion.Text = "Version: " & Assembly.GetExecutingAssembly.GetName.Version.ToString
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("0 min", 0))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("3 min", 3))
@@ -56,5 +58,13 @@ Public Class FormMain
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         ZeitAnzeigen()
+    End Sub
+
+    Private Sub Einstellungen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Einstellungen.Click
+        FormEinstellungen.Show()
+    End Sub
+
+    Private Sub FormMain_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
+        LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
     End Sub
 End Class

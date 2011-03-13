@@ -11,3 +11,4 @@ D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\bin\Release\StedySoft.SenseSDK.dll
 D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Release\DVBAbfahrt.exe
 D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Release\DVBAbfahrt.xml
 D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Release\DVBAbfahrt.pdb
+D:\Unterlagen\Projekte\DVBAbfahrt\DVBAbfahrt\obj\Release\DVBAbfahrt.FormEinstellungen.resources
