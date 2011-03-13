@@ -45,6 +45,7 @@ Public Class FormMain
             If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Aktuelle Linie", CStr(AktulleLinie))
             ZeigeAbfahrtsZeit(Fahrplan.GetLinienName(AktulleLinie), BerrechneAbfahrtsZeit(Fahrplan.GetFahrplan(AktulleLinie), Einlesen()))
         Next i
+        ZeigeDebugInfo("Berrechnet um", Funktionen.UhrzeitFormat(CInt(Date.Now.Hour)) & ":" & Funktionen.UhrzeitFormat(CInt(Date.Now.Minute)) & ":" & Funktionen.UhrzeitFormat(CInt(Date.Now.Second)))
     End Sub
 
     Private Sub ButtonAbfahrt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAbfahrt.Click
@@ -64,7 +65,7 @@ Public Class FormMain
         FormEinstellungen.SetHaltestelle(0, "Bergmannstraße")
         LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
         LabelVersion.Text = "Version: " & Assembly.GetExecutingAssembly.GetName.Version.ToString
-        LabelFahrplanDatum.Text = "Fahrplan vom: " & Fahrplan.GetFahrplanDatum
+        LabelFahrplanDatum.Text = "Fahrplandaten vom: " & Fahrplan.GetFahrplanDatum
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("0 min", 0))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("3 min", 3))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("5 min", 5))

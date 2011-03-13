@@ -25,9 +25,9 @@ Public Class FormEinstellungen
         Debug = False
         Feiertag = False
         Update = False
-        ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("Bergmannstraße", 0))
-        ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("TU Campus", 1))
-        ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("XXL Klettern", 2))
+        For i = 0 To Fahrplan.GetAnzahlHaltestellen - 1
+            ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item(Fahrplan.GetHaltestellenName(i), i))
+        Next i
     End Sub
 
     Private Sub MenuItemUebernehmen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItemUebernehmen.Click
