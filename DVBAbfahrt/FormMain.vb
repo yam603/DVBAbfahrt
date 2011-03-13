@@ -24,7 +24,7 @@ Public Class FormMain
         TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & Linie & vbNewLine & "- " & AbfahrtsZeit & vbNewLine & vbNewLine
     End Sub
 
-    Private Sub ButtonAbfahrt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAbfahrt.Click
+    Public Sub AbfahrtBerrechnen()
         TextBoxAbfahrt.Text = ""
 
         'Abhängige Abfrage
@@ -34,6 +34,7 @@ Public Class FormMain
         'Debug
         If FormEinstellungen.GetDebug Then
             ZeigeDebugInfo("Feiertag", CStr(FormEinstellungen.GetFeiertag))
+            ZeigeDebugInfo("UpdateStatus", CStr(FormEinstellungen.GetUpdateStatus))
             ZeigeDebugInfo("Aktulle Haltestelle", CStr(AktuelleHaltestelle))
             ZeigeDebugInfo("Anzahl Haltestellen - 1", CStr(Fahrplan.GetAnzahlLinien(AktuelleHaltestelle)))
         End If
@@ -44,6 +45,10 @@ Public Class FormMain
             If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Aktuelle Linie", CStr(AktulleLinie))
             ZeigeAbfahrtsZeit(Fahrplan.GetLinienName(AktulleLinie), BerrechneAbfahrtsZeit(Fahrplan.GetFahrplan(AktulleLinie), Einlesen()))
         Next i
+    End Sub
+
+    Private Sub ButtonAbfahrt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAbfahrt.Click
+        AbfahrtBerrechnen()
     End Sub
 
     Private Function Einlesen() As Integer
@@ -72,6 +77,7 @@ Public Class FormMain
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("1,5 h", 90))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("2 h", 120))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("3 h", 180))
+        AbfahrtBerrechnen()
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
@@ -88,5 +94,9 @@ Public Class FormMain
 
     Public Sub AusgabeLeeren()
         TextBoxAbfahrt.Text = ""
+    End Sub
+
+    Private Sub Timer2_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer2.Tick
+        If FormEinstellungen.GetUpdateStatus Then AbfahrtBerrechnen()
     End Sub
 End Class

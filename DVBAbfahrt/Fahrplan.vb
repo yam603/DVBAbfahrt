@@ -691,15 +691,15 @@
                                    "Linie 10 - Friedrichstadt", _
                                    "Linie 63 - Löbtau", _
                                    "Linie 74 - Reick", _
-                                   "Linie 61 - Weißig/Fernsehturm", _
-                                   "Linie 66 - Lockwitz/Nickern", _
+                                   "Linie 61 - Weißig/Fernsehturm (ungültig)", _
+                                   "Linie 66 - Lockwitz/Nickern (ungültig)", _
                                    "Linie 85 - Stiesen", _
                                    "Linie 1 - Leutewitz", _
-                                   "Linie 2 - Gorbitz" _
+                                   "Linie 2 - Gorbitz (ungültig)" _
                                    }
 #End Region
 
-    Const FahrplanDatum As String = "12.03.2011"
+    Const FahrplanDatum As String = "13.03.2011"
 
     Const AnzahlHaltestellen As Byte = 3
 

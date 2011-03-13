@@ -33,6 +33,7 @@ Partial Public Class FormMain
         Me.MainMenu2 = New System.Windows.Forms.MainMenu
         Me.MenuItemEinstellungen = New System.Windows.Forms.MenuItem
         Me.LabelFahrplanDatum = New System.Windows.Forms.Label
+        Me.Timer2 = New System.Windows.Forms.Timer
         Me.SuspendLayout()
         '
         'ButtonAbfahrt
@@ -138,6 +139,10 @@ Partial Public Class FormMain
         Me.LabelFahrplanDatum.Size = New System.Drawing.Size(199, 14)
         Me.LabelFahrplanDatum.Text = "FahrplanDatum"
         '
+        'Timer2
+        '
+        Me.Timer2.Interval = 10000
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -174,5 +179,6 @@ Partial Public Class FormMain
     Friend WithEvents MenuItemEinstellungen As System.Windows.Forms.MenuItem
     Friend WithEvents Einstellungen As System.Windows.Forms.MenuItem
     Friend WithEvents LabelFahrplanDatum As System.Windows.Forms.Label
+    Friend WithEvents Timer2 As System.Windows.Forms.Timer
 
 End Class

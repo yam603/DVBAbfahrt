@@ -19,13 +19,12 @@ Public Class FormEinstellungen
 
     Private GewaehlteHaltestelle As Haltestelle
 
-    Private Debug As Boolean
-
-    Private Feiertag As Boolean
+    Private Debug, Feiertag, Update As Boolean
 
     Private Sub Einstellungen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Debug = False
         Feiertag = False
+        Update = False
         ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("Bergmannstraße", 0))
         ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("TU Campus", 1))
         ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("XXL Klettern", 2))
@@ -39,7 +38,14 @@ Public Class FormEinstellungen
         End If
         If CheckBoxDebug.Status = ItemStatus.On Then Debug = True Else Debug = False
         If CheckBoxFeiertag.Status = ItemStatus.On Then Feiertag = True Else Feiertag = False
+        If CheckBoxUpdate.Status = ItemStatus.On Then
+            FormMain.Timer2.Enabled = True
+            Update = True
+        Else : Update = False
+            FormMain.Timer2.Enabled = False
+        End If
         FormMain.AusgabeLeeren()
+        FormMain.AbfahrtBerrechnen()
         Me.Hide()
     End Sub
 
@@ -66,5 +72,9 @@ Public Class FormEinstellungen
 
     Public Function GetFeiertag() As Boolean
         Return Feiertag
+    End Function
+
+    Public Function GetUpdateStatus() As Boolean
+        Return Update
     End Function
 End Class
