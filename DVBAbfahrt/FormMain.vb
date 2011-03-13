@@ -13,6 +13,9 @@ Imports StedySoft.SenseSDK.Localization
 
 Public Class FormMain
 
+    Private Sub ZeigeDebugInfo(ByVal Beschreibung As String, ByVal Wert As String)
+        TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & Beschreibung & ": " & Wert & vbNewLine & vbNewLine
+    End Sub
     Private Sub ZeitAnzeigen()
         LabelUhrzeit.Text = TagDecodierungTagDeutsch(TagCodierungTag(Date.Now.DayOfWeek)) & ", " & UhrzeitFormat(Date.Now.Hour) & ":" & UhrzeitFormat(Date.Now.Minute)
     End Sub
@@ -23,10 +26,21 @@ Public Class FormMain
 
     Private Sub ButtonAbfahrt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAbfahrt.Click
         TextBoxAbfahrt.Text = ""
-        ZeigeAbfahrtsZeit("Linie 10 - Friedrichstadt: ", BerrechneAbfahrtsZeit(Fahrplan.GetLinie10_Friedrichstadt, Einlesen()))
-        ZeigeAbfahrtsZeit("Linie 4 - Weinböhla: ", BerrechneAbfahrtsZeit(Fahrplan.GetLinie4_Weinboehla, Einlesen()))
-        ZeigeAbfahrtsZeit("Linie 63 - Löbtau: ", BerrechneAbfahrtsZeit(Fahrplan.GetLinie63_Loebtau, Einlesen()))
-        ZeigeAbfahrtsZeit("Linie 74 - Reick: ", BerrechneAbfahrtsZeit(Fahrplan.GetLinie74_Reick, Einlesen()))
+
+        'Abhängige Abfrage
+        Dim AktuelleHaltestelle, AktulleLinie As Byte
+
+        AktuelleHaltestelle = FormEinstellungen.GetHaltestelle.Index
+        'Debug
+        If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Aktulle Haltestelle", CStr(AktuelleHaltestelle))
+        If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Anzahl Haltestellen - 1", CStr(Fahrplan.GetAnzahlLinien(AktuelleHaltestelle)))
+
+        For i = 0 To Fahrplan.GetAnzahlLinien(AktuelleHaltestelle)
+            AktulleLinie = Fahrplan.GetLinie(AktuelleHaltestelle, i)
+            'Debug 
+            If FormEinstellungen.GetDebug Then ZeigeDebugInfo("Aktuelle Linie", CStr(AktulleLinie))
+            ZeigeAbfahrtsZeit(Fahrplan.GetLinienName(AktulleLinie), BerrechneAbfahrtsZeit(Fahrplan.GetFahrplan(AktulleLinie), Einlesen()))
+        Next i
     End Sub
 
     Private Function Einlesen() As Integer
@@ -42,6 +56,7 @@ Public Class FormMain
         FormEinstellungen.SetHaltestelle(0, "Bergmannstraße")
         LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
         LabelVersion.Text = "Version: " & Assembly.GetExecutingAssembly.GetName.Version.ToString
+        LabelFahrplanDatum.Text = "Fahrplan vom: " & Fahrplan.GetFahrplanDatum
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("0 min", 0))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("3 min", 3))
         ComboWarteZeit.Items.Add(New SenseComboControl.Item("5 min", 5))

@@ -17,22 +17,25 @@ Public Class FormEinstellungen
         Dim Name As String
     End Structure
 
-    Private Linienzuordnung As Byte(,) = {{0, 10, 4, 63, 74, 255, 0, 0}, _
-                                      {1, 61, 66, 85, 255, 0, 0, 0}, _
-                                      {2, 1, 2, 255, 0, 0, 0, 0} _
-                                      }
-
     Private GewaehlteHaltestelle As Haltestelle
 
+    Private Debug As Boolean
+
     Private Sub Einstellungen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Debug = False
         ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("Bergmannstraße", 0))
         ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("TU Campus", 1))
         ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item("XXL Klettern", 2))
     End Sub
 
     Private Sub MenuItemUebernehmen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuItemUebernehmen.Click
-        GewaehlteHaltestelle.Index = ComboBoxHaltestelle.SelectedValue
-        GewaehlteHaltestelle.Name = ComboBoxHaltestelle.SelectedText
+        If ComboBoxHaltestelle.SelectedText = "" Then
+            ComboBoxHaltestelle.SelectedValue = 0
+        Else : GewaehlteHaltestelle.Index = ComboBoxHaltestelle.SelectedValue
+            GewaehlteHaltestelle.Name = ComboBoxHaltestelle.SelectedText
+        End If
+
+        If CheckBoxDebug.Status = ItemStatus.On Then Debug = True
     End Sub
 
     Public Function GetHaltestelle() As Haltestelle
@@ -51,4 +54,8 @@ Public Class FormEinstellungen
     Private Sub FormEinstellungen_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         ComboBoxHaltestelle.SelectedValue = GewaehlteHaltestelle.Index
     End Sub
+
+    Public Function GetDebug() As Boolean
+        Return Debug
+    End Function
 End Class

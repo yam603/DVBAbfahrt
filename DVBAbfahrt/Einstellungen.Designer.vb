@@ -27,6 +27,7 @@ Partial Public Class FormEinstellungen
         Me.ComboBoxHaltestelle = New StedySoft.SenseSDK.SenseComboControl
         Me.LabelHaltestelle = New System.Windows.Forms.Label
         Me.CheckBoxFeiertag = New StedySoft.SenseSDK.SenseCheckboxControl
+        Me.CheckBoxDebug = New StedySoft.SenseSDK.SenseCheckboxControl
         Me.SuspendLayout()
         '
         'mainMenu1
@@ -75,6 +76,15 @@ Partial Public Class FormEinstellungen
         Me.CheckBoxFeiertag.TabIndex = 12
         Me.CheckBoxFeiertag.Text = "Heute ist Feitertag!"
         '
+        'CheckBoxDebug
+        '
+        Me.CheckBoxDebug.Location = New System.Drawing.Point(20, 140)
+        Me.CheckBoxDebug.Name = "CheckBoxDebug"
+        Me.CheckBoxDebug.Size = New System.Drawing.Size(180, 19)
+        Me.CheckBoxDebug.Status = StedySoft.SenseSDK.ItemStatus.Off
+        Me.CheckBoxDebug.TabIndex = 14
+        Me.CheckBoxDebug.Text = "DebugInfos anzeigen"
+        '
         'FormEinstellungen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -82,6 +92,7 @@ Partial Public Class FormEinstellungen
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(240, 268)
+        Me.Controls.Add(Me.CheckBoxDebug)
         Me.Controls.Add(Me.CheckBoxFeiertag)
         Me.Controls.Add(Me.LabelHaltestelle)
         Me.Controls.Add(Me.ComboBoxHaltestelle)
@@ -98,4 +109,5 @@ Partial Public Class FormEinstellungen
     Friend WithEvents LabelHaltestelle As System.Windows.Forms.Label
     Friend WithEvents MenuItemUebernehmen As System.Windows.Forms.MenuItem
     Friend WithEvents CheckBoxFeiertag As StedySoft.SenseSDK.SenseCheckboxControl
+    Friend WithEvents CheckBoxDebug As StedySoft.SenseSDK.SenseCheckboxControl
 End Class

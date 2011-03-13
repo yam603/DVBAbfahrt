@@ -32,6 +32,7 @@ Partial Public Class FormMain
         Me.LabelVersion = New System.Windows.Forms.Label
         Me.MainMenu2 = New System.Windows.Forms.MainMenu
         Me.MenuItemEinstellungen = New System.Windows.Forms.MenuItem
+        Me.LabelFahrplanDatum = New System.Windows.Forms.Label
         Me.SuspendLayout()
         '
         'ButtonAbfahrt
@@ -56,7 +57,7 @@ Partial Public Class FormMain
         Me.LabelUhrzeit.Location = New System.Drawing.Point(110, 28)
         Me.LabelUhrzeit.Name = "LabelUhrzeit"
         Me.LabelUhrzeit.Size = New System.Drawing.Size(109, 20)
-        Me.LabelUhrzeit.Text = "Label1"
+        Me.LabelUhrzeit.Text = "Uhrzeit"
         Me.LabelUhrzeit.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'TextBoxAbfahrt
@@ -116,11 +117,10 @@ Partial Public Class FormMain
         'LabelVersion
         '
         Me.LabelVersion.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular)
-        Me.LabelVersion.Location = New System.Drawing.Point(119, 333)
+        Me.LabelVersion.Location = New System.Drawing.Point(20, 28)
         Me.LabelVersion.Name = "LabelVersion"
         Me.LabelVersion.Size = New System.Drawing.Size(100, 14)
         Me.LabelVersion.Text = "Version"
-        Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'MainMenu2
         '
@@ -130,6 +130,14 @@ Partial Public Class FormMain
         '
         Me.MenuItemEinstellungen.Text = "Einstellungen"
         '
+        'LabelFahrplanDatum
+        '
+        Me.LabelFahrplanDatum.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular)
+        Me.LabelFahrplanDatum.Location = New System.Drawing.Point(20, 332)
+        Me.LabelFahrplanDatum.Name = "LabelFahrplanDatum"
+        Me.LabelFahrplanDatum.Size = New System.Drawing.Size(199, 14)
+        Me.LabelFahrplanDatum.Text = "FahrplanDatum"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -137,6 +145,7 @@ Partial Public Class FormMain
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(240, 268)
+        Me.Controls.Add(Me.LabelFahrplanDatum)
         Me.Controls.Add(Me.LabelVersion)
         Me.Controls.Add(Me.HeaderMain)
         Me.Controls.Add(Me.Label1)
@@ -164,5 +173,6 @@ Partial Public Class FormMain
     Friend WithEvents MainMenu2 As System.Windows.Forms.MainMenu
     Friend WithEvents MenuItemEinstellungen As System.Windows.Forms.MenuItem
     Friend WithEvents Einstellungen As System.Windows.Forms.MenuItem
+    Friend WithEvents LabelFahrplanDatum As System.Windows.Forms.Label
 
 End Class

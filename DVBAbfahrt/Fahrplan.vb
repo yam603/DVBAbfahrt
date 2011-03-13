@@ -1,4 +1,6 @@
 ﻿Module Fahrplan
+
+#Region "Fahrpläne"
     Private Linie10_Friedrichstadt As Byte(,,) = {{{0, 255, 0, 0, 0, 0, 0, 0}, _
                                  {1, 255, 0, 0, 0, 0, 0, 0}, _
                                  {2, 255, 0, 0, 0, 0, 0, 0}, _
@@ -147,7 +149,7 @@
                              {23, 28, 58, 255, 0, 0, 0, 0}} _
                              }
 
-    Dim Linie63_Loebtau As Byte(,,) = {{{0, 29, 44, 255, 0, 0, 0, 0, 0}, _
+    Private Linie63_Loebtau As Byte(,,) = {{{0, 29, 44, 255, 0, 0, 0, 0, 0}, _
                              {1, 14, 38, 255, 0, 0, 0, 0, 0}, _
                              {2, 255, 0, 0, 0, 0, 0, 0, 0}, _
                              {3, 255, 0, 0, 0, 0, 0, 0, 0}, _
@@ -294,20 +296,77 @@
                                  {22, 12, 42, 255, 0}, _
                                  {23, 12, 42, 255, 0}} _
                                  }
+#End Region
 
-    Public Function GetLinie4_Weinboehla() As Byte(,,)
-        Return Linie4_Weinboehla
+#Region "Linien/Haltestellen - Codierung"
+    'LinienIndex, AnzahlHaltestellen, Haltestelle1 ... 6
+    Private Linienzuordnung As Byte(,) = {{0, 4, 0, 1, 2, 3, 0, 0}, _
+                                  {1, 3, 4, 5, 6, 0, 0, 0}, _
+                                  {2, 2, 7, 8, 0, 0, 0, 0} _
+                                  }
+
+    Private LinienCodierung As Byte(,) = {{0, 4}, _
+                                          {1, 10}, _
+                                          {2, 63}, _
+                                          {3, 74}, _
+                                          {4, 61}, _
+                                          {5, 66}, _
+                                          {6, 85}, _
+                                          {7, 1}, _
+                                          {8, 2} _
+                                          }
+
+    Dim LinienNamen As String() = {"Linie 4 - Weinböhla", _
+                                   "Linie 10 - Friedrichstadt", _
+                                   "Linie 63 - Löbtau", _
+                                   "Linie 74 - Reick", _
+                                   "Linie 61 -", _
+                                   "Linie 66 -", _
+                                   "Linie 85 -", _
+                                   "Linie 1 -", _
+                                   "Linie 2 -" _
+                                   }
+#End Region
+
+    Const FahrplanDatum As String = "12.03.2011"
+
+    Const AnzahlHaltestellen As Byte = 3
+
+    Public Function GetLinienName(ByVal Linie As Byte) As String
+        Return LinienNamen(Linie)
     End Function
 
-    Public Function GetLinie10_Friedrichstadt() As Byte(,,)
-        Return Linie10_Friedrichstadt
+    Public Function GetFahrplanDatum() As String
+        Return FahrplanDatum
     End Function
 
-    Public Function GetLinie63_Loebtau() As Byte(,,)
-        Return Linie63_Loebtau
+    Public Function GetFahrplan(ByVal Linie As Byte) As Byte(,,)
+        Select Case Linie
+            Case 0
+                Return Linie4_Weinboehla
+            Case 1
+                Return Linie10_Friedrichstadt
+            Case 2
+                Return Linie63_Loebtau
+            Case 3
+                Return Linie74_Reick
+            Case 4
+            Case 5
+            Case 6
+            Case 7
+            Case 8
+        End Select
     End Function
 
-    Public Function GetLinie74_Reick() As Byte(,,)
-        Return Linie74_Reick
+    Public Function GetAnzahlLinien(ByVal Haltestelle As Byte) As Byte
+        If Haltestelle <= AnzahlHaltestellen - 1 Then
+            Return Linienzuordnung(Haltestelle, 1) - 1
+        End If
+    End Function
+
+    Public Function GetLinie(ByVal Haltestelle As Byte, ByVal Index As Byte) As Byte
+        If Haltestelle <= AnzahlHaltestellen - 1 Then
+            Return Linienzuordnung(Haltestelle, Index + 2)
+        End If
     End Function
 End Module
