@@ -1,4 +1,6 @@
-﻿Module Funktionen
+﻿Imports System.IO
+
+Module Funktionen
     Public Function UhrzeitFormat(ByVal Time As Integer) As String
         If Time < 10 Then Return ("0" + CStr(Time)) Else Return CStr(Time)
     End Function
@@ -79,16 +81,35 @@
         End Select
     End Function
 
+    Private AbfahrtsZeit As DateTime
+    Private StundeAbfahrt, MinuteAbfahrt As Byte
+
+    Public Function getStundeAbfahrt() As Byte
+        Return StundeAbfahrt
+    End Function
+
+    Public Function getMinuteAbfahrt() As Byte
+        Return MinuteAbfahrt
+    End Function
+
+    Public Function getAbfahrtsZeit() As DateTime
+        Return AbfahrtsZeit
+    End Function
+
+
     Public Function BerrechneAbfahrtsZeit(ByVal Fahrplan As Byte(,,), ByVal ZeitZurHaltestelle As Integer) As String
         Dim Ueberlauf As Boolean
-        Dim LinienWahl, TagAbfahrt, StundeAbfahrt, MinuteAbfahrt, TagAbfahrtIndex, StundeAbfahrtIndex, MinuteAbfahrtIndex, TagAbfahrtWunsch, StundeAbfahrtWunsch, MinuteAbfahrtWunsch As Byte
+        Dim LinienWahl, TagAbfahrt, TagAbfahrtIndex, StundeAbfahrtIndex, MinuteAbfahrtIndex, TagAbfahrtWunsch, StundeAbfahrtWunsch, MinuteAbfahrtWunsch As Byte
         Dim UeberlaufZeit, UeberlaufAnzahl As Integer
+        Dim ZeitSpanneStunde As New TimeSpan(1, 0, 0, 0)
 
         'Initialsierung
         If FormEinstellungen.GetFeiertag = True Then
             TagAbfahrtWunsch = 6
         Else : TagAbfahrtWunsch = TagCodierungTag(Date.Now.DayOfWeek)
         End If
+
+        AbfahrtsZeit = Date.Now
 
         StundeAbfahrtWunsch = Date.Now.Hour
         MinuteAbfahrtWunsch = Date.Now.Minute + ZeitZurHaltestelle
@@ -117,6 +138,7 @@
                 If TagAbfahrt = 6 Then
                     TagAbfahrt = 0
                 Else : TagAbfahrt = TagAbfahrt + 1
+                    AbfahrtsZeit.Add(ZeitSpanneStunde)
                 End If
                 TagAbfahrtIndex = TagCodierungIndex(TagAbfahrt)
             Else : StundeAbfahrtIndex = StundeAbfahrtIndex + 1
@@ -136,4 +158,26 @@
 
         Return (TagDecodierungTagDeutsch(TagAbfahrt) & ", " & UhrzeitFormat(StundeAbfahrt) & ":" & UhrzeitFormat(MinuteAbfahrt))
     End Function
+
+    Public Sub IniEinlesen()
+        Dim Dateiname As String = "\Speicherkarte\DVBAbfahrt.ini"
+
+        If File.Exists(Dateiname) Then
+            Dim fs As New FileStream(Dateiname, FileMode.Open)
+            Dim sr As New StreamReader(fs)
+            Dim Zeile As Integer = CInt(sr.ReadLine)
+            FormEinstellungen.SetHaltestelle(Zeile, Fahrplan.GetHaltestellenName(Zeile))
+            sr.Close()
+        Else
+            FormEinstellungen.SetHaltestelle(0, "Bergmannstraße")
+        End If
+    End Sub
+
+    Public Sub IniSchreiben()
+        Dim fs As New FileStream("\Speicherkarte\DVBAbfahrt.ini", FileMode.Create)
+        Dim sw As New StreamWriter(fs)
+        sw.WriteLine(FormEinstellungen.GetHaltestelle.Index.ToString)
+        sw.Close()
+    End Sub
+
 End Module

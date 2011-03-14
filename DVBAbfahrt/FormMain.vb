@@ -21,7 +21,14 @@ Public Class FormMain
     End Sub
 
     Private Sub ZeigeAbfahrtsZeit(ByVal Linie As String, ByVal AbfahrtsZeit As String)
-        TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & Linie & vbNewLine & "- " & AbfahrtsZeit & vbNewLine & vbNewLine
+        Dim Abfahrt As New DateTime(Funktionen.getAbfahrtsZeit.Year, Funktionen.getAbfahrtsZeit.Month, Funktionen.getAbfahrtsZeit.Day, Funktionen.getStundeAbfahrt, Funktionen.getMinuteAbfahrt, 0)
+
+        TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & Linie & vbNewLine & "- " & AbfahrtsZeit
+
+        If FormEinstellungen.GetVerbleibendeZeit Then
+            TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & " (in " & Math.Round(Abfahrt.Subtract(Date.Now).TotalMinutes).ToString & " Minuten)"
+        End If
+        TextBoxAbfahrt.Text = TextBoxAbfahrt.Text & vbNewLine & vbNewLine
     End Sub
 
     Public Sub AbfahrtBerrechnen()
@@ -62,7 +69,7 @@ Public Class FormMain
 
     Private Sub FormMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ZeitAnzeigen()
-        FormEinstellungen.SetHaltestelle(0, "Bergmannstraße")
+        Funktionen.IniEinlesen()
         LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
         LabelVersion.Text = "Version: " & Assembly.GetExecutingAssembly.GetName.Version.ToString
         LabelFahrplanDatum.Text = "Fahrplandaten vom: " & Fahrplan.GetFahrplanDatum

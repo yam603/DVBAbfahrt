@@ -19,12 +19,12 @@ Public Class FormEinstellungen
 
     Private GewaehlteHaltestelle As Haltestelle
 
-    Private Debug, Feiertag, Update As Boolean
+    Private Debug, Feiertag, UpdateStatus, VerbleibendeZeit As Boolean
 
     Private Sub Einstellungen_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Debug = False
         Feiertag = False
-        Update = False
+        UpdateStatus = False
         For i = 0 To Fahrplan.GetAnzahlHaltestellen - 1
             ComboBoxHaltestelle.Items.Add(New SenseComboControl.Item(Fahrplan.GetHaltestellenName(i), i))
         Next i
@@ -37,11 +37,13 @@ Public Class FormEinstellungen
             GewaehlteHaltestelle.Name = ComboBoxHaltestelle.SelectedText
         End If
         If CheckBoxDebug.Status = ItemStatus.On Then Debug = True Else Debug = False
+        If CheckBoxStartHaltestelle.Status = ItemStatus.On Then Funktionen.IniSchreiben()
+        If CheckBoxZeitVerbleibend.Status = ItemStatus.On Then VerbleibendeZeit = True Else VerbleibendeZeit = False
         If CheckBoxFeiertag.Status = ItemStatus.On Then Feiertag = True Else Feiertag = False
         If CheckBoxUpdate.Status = ItemStatus.On Then
             FormMain.Timer2.Enabled = True
-            Update = True
-        Else : Update = False
+            UpdateStatus = True
+        Else : UpdateStatus = False
             FormMain.Timer2.Enabled = False
         End If
         FormMain.AusgabeLeeren()
@@ -75,6 +77,10 @@ Public Class FormEinstellungen
     End Function
 
     Public Function GetUpdateStatus() As Boolean
-        Return Update
+        Return UpdateStatus
+    End Function
+
+    Public Function GetVerbleibendeZeit() As Boolean
+        Return VerbleibendeZeit
     End Function
 End Class
