@@ -72,7 +72,7 @@ Partial Public Class FormMain
         Me.TextBoxAbfahrt.Name = "TextBoxAbfahrt"
         Me.TextBoxAbfahrt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.TextBoxAbfahrt.ReadOnly = True
-        Me.TextBoxAbfahrt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBoxAbfahrt.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.TextBoxAbfahrt.Size = New System.Drawing.Size(199, 191)
         Me.TextBoxAbfahrt.TabIndex = 3
         Me.TextBoxAbfahrt.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
