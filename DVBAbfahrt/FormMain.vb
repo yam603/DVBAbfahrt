@@ -68,6 +68,11 @@ Public Class FormMain
     End Function
 
     Private Sub FormMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        FormEinstellungen.SetVerbleibendeZeit(True)
+        FormEinstellungen.SetDebug(False)
+        FormEinstellungen.SetFeiertag(False)
+        FormEinstellungen.SetUpdateStatus(False)
+
         ZeitAnzeigen()
         Funktionen.IniEinlesen()
         LabelHaltestelle.Text = "Haltestelle " & FormEinstellungen.GetHaltestelle.Name
